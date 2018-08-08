@@ -16,25 +16,40 @@ import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
+
+    @BindView(R.id.image_iv)
+    protected ImageView ingredientsIv;
+    @BindView(R.id.also_known_tv)
+    protected TextView akaTv;
+    @BindView(R.id.origin_tv)
+    protected TextView origin;
+    @BindView(R.id.ingredients_lv)
+    protected ListView ingredientsLv;
+    @BindView(R.id.description_tv)
+    protected TextView descTv;
+    @BindView(R.id.orgArea)
+    protected LinearLayout orgA;
+    @BindView(R.id.akaArea)
+    protected LinearLayout akaA;
+    @BindView(R.id.ingrArea)
+    protected LinearLayout ingrA;
+    @BindView(R.id.descArea)
+    protected LinearLayout descA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        ImageView ingredientsIv = findViewById(R.id.image_iv);
-        TextView akaTv = findViewById(R.id.also_known_tv);
-        TextView origin = findViewById(R.id.origin_tv);
-        TextView descTv = findViewById(R.id.description_tv);
-
-        LinearLayout orgA = findViewById(R.id.orgArea);
-        LinearLayout akaA = findViewById(R.id.akaArea);
-        LinearLayout ingrA = findViewById(R.id.ingrArea);
-        LinearLayout descA = findViewById(R.id.descArea);
+        // bind the view using butterknife
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -85,7 +100,6 @@ public class DetailActivity extends AppCompatActivity {
         } else {
             ListAdapter ingredientsAdapter = new ArrayAdapter<String>(
                     this, android.R.layout.simple_list_item_1, sandwich.getIngredients());
-            ListView ingredientsLv = findViewById(R.id.ingredients_lv);
             ingredientsLv.setAdapter(ingredientsAdapter);
         }
 
