@@ -3,7 +3,13 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -21,6 +27,14 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         ImageView ingredientsIv = findViewById(R.id.image_iv);
+        TextView akaTv = findViewById(R.id.also_known_tv);
+        TextView origin = findViewById(R.id.origin_tv);
+        TextView descTv = findViewById(R.id.description_tv);
+
+        LinearLayout orgA = findViewById(R.id.orgArea);
+        LinearLayout akaA = findViewById(R.id.akaArea);
+        LinearLayout ingrA = findViewById(R.id.ingrArea);
+        LinearLayout descA = findViewById(R.id.descArea);
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -47,6 +61,33 @@ public class DetailActivity extends AppCompatActivity {
         Picasso.with(this)
                 .load(sandwich.getImage())
                 .into(ingredientsIv);
+
+        origin.setText(sandwich.getPlaceOfOrigin());
+        if(origin.getText().equals("") || origin.getText().equals(null)){
+            orgA.setVisibility(View.GONE);
+        }
+
+        akaTv.setText("");
+        for(String s : sandwich.getAlsoKnownAs()){
+            akaTv.append(s + ". ");
+        }
+        if(akaTv.getText().equals("") || akaTv.getText().equals(null)) {
+            akaA.setVisibility(View.GONE);
+        }
+
+        descTv.setText(sandwich.getDescription());
+        if(descTv.getText().equals("") || descTv.getText().equals(null)) {
+            descA.setVisibility(View.GONE);
+        }
+
+        if(sandwich.getIngredients().isEmpty() || sandwich.getIngredients().equals(null)) {
+            ingrA.setVisibility(View.GONE);
+        } else {
+            ListAdapter ingredientsAdapter = new ArrayAdapter<String>(
+                    this, android.R.layout.simple_list_item_1, sandwich.getIngredients());
+            ListView ingredientsLv = findViewById(R.id.ingredients_lv);
+            ingredientsLv.setAdapter(ingredientsAdapter);
+        }
 
         setTitle(sandwich.getMainName());
     }
