@@ -38,11 +38,11 @@ public class JsonUtils {
             }
             sandwich.setAlsoKnownAs(akaList);
 
-            sandwich.setPlaceOfOrigin(sandwichDetails.getString(KEY_PLACE_OF_ORIGIN));
+            sandwich.setPlaceOfOrigin(sandwichDetails.optString(KEY_PLACE_OF_ORIGIN));
 
-            sandwich.setDescription(sandwichDetails.getString(KEY_DESCRIPTION));
+            sandwich.setDescription(sandwichDetails.optString(KEY_DESCRIPTION));
 
-            sandwich.setImage(sandwichDetails.getString(KEY_IMAGE));
+            sandwich.setImage(sandwichDetails.optString(KEY_IMAGE));
 
             List<String> ingrList = new ArrayList<String>();
             JSONArray ingrArray = sandwichDetails.getJSONArray(KEY_INGREDIENTS);
