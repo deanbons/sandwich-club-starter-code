@@ -30,18 +30,18 @@ public class DetailActivity extends AppCompatActivity {
     protected TextView akaTv;
     @BindView(R.id.origin_tv)
     protected TextView origin;
-    @BindView(R.id.ingredients_lv)
-    protected ListView ingredientsLv;
+    @BindView(R.id.ingredients_tv)
+    protected TextView ingredientsTv;
     @BindView(R.id.description_tv)
     protected TextView descTv;
     @BindView(R.id.orgArea)
-    protected LinearLayout orgA;
+    protected TextView orgA;
     @BindView(R.id.akaArea)
-    protected LinearLayout akaA;
+    protected TextView akaA;
     @BindView(R.id.ingrArea)
-    protected LinearLayout ingrA;
+    protected TextView ingrA;
     @BindView(R.id.descArea)
-    protected LinearLayout descA;
+    protected TextView descA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +79,7 @@ public class DetailActivity extends AppCompatActivity {
 
         origin.setText(sandwich.getPlaceOfOrigin());
         if(origin.getText().equals("") || origin.getText().equals(null)){
+            origin.setVisibility(View.GONE);
             orgA.setVisibility(View.GONE);
         }
 
@@ -87,20 +88,24 @@ public class DetailActivity extends AppCompatActivity {
             akaTv.append(s + ". ");
         }
         if(akaTv.getText().equals("") || akaTv.getText().equals(null)) {
+            akaTv.setVisibility(View.GONE);
             akaA.setVisibility(View.GONE);
         }
 
         descTv.setText(sandwich.getDescription());
         if(descTv.getText().equals("") || descTv.getText().equals(null)) {
+            descTv.setVisibility(View.GONE);
             descA.setVisibility(View.GONE);
         }
 
         if(sandwich.getIngredients().isEmpty() || sandwich.getIngredients().equals(null)) {
+            ingredientsTv.setVisibility(View.GONE);
             ingrA.setVisibility(View.GONE);
         } else {
-            ListAdapter ingredientsAdapter = new ArrayAdapter<String>(
-                    this, android.R.layout.simple_list_item_1, sandwich.getIngredients());
-            ingredientsLv.setAdapter(ingredientsAdapter);
+            ingredientsTv.setText("");
+            for(String i : sandwich.getIngredients()) {
+                ingredientsTv.append(i +"\n\n");
+            }
         }
 
         setTitle(sandwich.getMainName());

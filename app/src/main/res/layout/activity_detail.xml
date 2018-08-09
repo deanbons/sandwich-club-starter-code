@@ -1,140 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.udacity.sandwichclub.DetailActivity">
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
         <LinearLayout
+            android:id="@+id/akaRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:orientation="horizontal">
-
-            <LinearLayout
+            <TextView
                 android:id="@+id/akaArea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detail_also_known_as_label"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:padding="4dp"/>
+            <TextView
+                android:id="@+id/also_known_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:layout_weight="0.6"
-                android:orientation="vertical"
-                android:padding="2dp"
-                android:visibility="visible">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_also_known_as_label"
-                    android:textAlignment="center"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/also_known_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <LinearLayout
+                android:padding="4dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/orgRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/akaRow"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:orientation="horizontal">
+            <TextView
                 android:id="@+id/orgArea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detail_place_of_origin_label"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:padding="4dp"/>
+            <TextView
+                android:id="@+id/origin_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:layout_marginRight="2dp"
-                android:layout_weight=".4"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:padding="2dp"
-                android:visibility="visible">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_place_of_origin_label"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/origin_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+                android:padding="4dp"/>
         </LinearLayout>
         <ImageView
             android:id="@+id/image_iv"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_below="@id/orgRow"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:adjustViewBounds="true"
             android:contentDescription="@string/sandwich_picture_content_description"
             android:scaleType="centerCrop"
             android:padding="2dp"/>
-
         <LinearLayout
+            android:id="@+id/hRow"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image_iv"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:orientation="horizontal">
-
-            <LinearLayout
+            <TextView
                 android:id="@+id/ingrArea"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.55"
-                android:orientation="vertical"
-                android:padding="2dp"
-                android:visibility="visible">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_ingredients_label"
-                    android:textAlignment="center"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <ListView
-                    android:id="@+id/ingredients_lv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_weight="55"
+                android:text="@string/detail_ingredients_label"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
                 android:id="@+id/descArea"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.45"
-                android:orientation="vertical"
-                android:padding="2dp"
-                android:visibility="visible">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_description_label"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <ScrollView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/description_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp" />
-                </ScrollView>
-            </LinearLayout>
-
-
+                android:layout_height="wrap_content"
+                android:layout_weight="45"
+                android:text="@string/detail_description_label"
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
-
-
-
-
-
-    </LinearLayout>
-</FrameLayout>
+        <LinearLayout
+            android:id="@+id/dRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hRow"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/ingredients_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="55"
+                android:padding="4dp"/>
+            <TextView
+                android:id="@+id/description_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="45"
+                android:textSize="14sp"
+                android:padding="4dp"/>
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
